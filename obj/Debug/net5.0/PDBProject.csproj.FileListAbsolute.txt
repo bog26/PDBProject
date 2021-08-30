@@ -1,0 +1,16 @@
+F:\C#\projects\3\PDBProject\bin\Debug\net5.0\PDBProject.exe
+F:\C#\projects\3\PDBProject\bin\Debug\net5.0\PDBProject.deps.json
+F:\C#\projects\3\PDBProject\bin\Debug\net5.0\PDBProject.runtimeconfig.json
+F:\C#\projects\3\PDBProject\bin\Debug\net5.0\PDBProject.runtimeconfig.dev.json
+F:\C#\projects\3\PDBProject\bin\Debug\net5.0\PDBProject.dll
+F:\C#\projects\3\PDBProject\bin\Debug\net5.0\ref\PDBProject.dll
+F:\C#\projects\3\PDBProject\bin\Debug\net5.0\PDBProject.pdb
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.csproj.AssemblyReference.cache
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.GeneratedMSBuildEditorConfig.editorconfig
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.AssemblyInfoInputs.cache
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.AssemblyInfo.cs
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.csproj.CoreCompileInputs.cache
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.dll
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\ref\PDBProject.dll
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.pdb
+F:\C#\projects\3\PDBProject\obj\Debug\net5.0\PDBProject.genruntimeconfig.cache
