@@ -13,4 +13,4 @@
 4,Label,Create,1,8,false,false,1
 5,Label,Login,1,8,false,false,1
 6,Entry,Enter user name,1,4,false,true,1
-7,Entry,Enter password,1,6,false,true,1
+7,Entry,Enter password,1,6,false,true,2

@@ -29,6 +29,9 @@ namespace PDBProject
 				case 1:
 					WidgetTest();
 					break;
+				case 2:
+					PasswordTest();
+					break;
 
 
 				default:
@@ -38,8 +41,12 @@ namespace PDBProject
 		public static void WidgetTest()
 		{
 			string userInput = Console.ReadLine();
-			//string userInput = IOMethodsCLS.GetUserInput();
-			//Console.Write(">>"+userInput);
+			
+		}
+		public static void PasswordTest()
+		{
+			string userInput = IOMethodsCLS.GetHiddenConsoleInput();
+			Console.WriteLine("pass:"+userInput);
 		}
 		
     }
