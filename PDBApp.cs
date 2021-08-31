@@ -21,7 +21,7 @@ namespace PDBProject
 			switch (ItemLink)
 			{
 				case -1:
-					MainApp.ConstructMainApp();
+					DatabaseApp.ConstructDatabaseApp();
 					break;
 				case 0:
 					ConstructPDBApp();

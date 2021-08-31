@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PDBProject
 {
@@ -165,37 +166,14 @@ namespace PDBProject
 			{
 				sortedList.Add(pair);
 			}
-			KeyValuePair<int,IFrameItem> temp;
-			for (int j=0; j<sortedList.Count; j++)
-			{
-				for(int i=j; i<sortedList.Count; i++)
-				{
-					if(sortedList[i].Value.Row == sortedList[j].Value.Row )
-					{
-						if(sortedList[i].Value.Column < sortedList[j].Value.Column)
-						{
-							temp = sortedList[i];
-							sortedList[i] = sortedList[j];
-							sortedList[j] = temp;
-						}
-					}
-					else
-					{
-						if(sortedList[i].Value.Row < sortedList[j].Value.Row)
-						{
-							temp = sortedList[i];
-							sortedList[i] = sortedList[j];
-							sortedList[j] = temp;
-						}
-					}
-				}
-			}
+			sortedList.Sort((pairA,pairB) => pairA.Value.Row.CompareTo(pairB.Value.Row));
 			foreach(KeyValuePair<int,IFrameItem> pair in sortedList)
 			{
 				sortedDict.Add(pair.Key,pair.Value);
 			}
 			return sortedDict;
 		}
+
 		public void UpdateFrameItem(IFrameItem item)
 		{
 			if (item.IsDynamic==true && item.ReadyForUpdate==true)
