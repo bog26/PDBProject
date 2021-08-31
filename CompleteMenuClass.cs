@@ -123,6 +123,7 @@ namespace PDBProject
 			this.crtDisplayFrame.CrtDisplayItem =  this.crtDisplayFrame.DisplayItemsDict[this.crtDisplayFrame.OrderedKeys[crtIndex]];	
 		}
 		public delegate void SwApp(int choice);
+		public delegate void EntryApp(int choice, string userInput);
 		public void UpdateFrame(SwApp swApp)
 		{
 			DisplayCRTFrame();
@@ -177,12 +178,35 @@ namespace PDBProject
 		{
 			if(FrameItem.IsActionTrigger)
 			{
-				swApp(FrameItem.Link);
-				return OrderedKeysCrtIndex;
+				//Console.Write("item type: " + FrameItem.ItemType);
+				if(FrameItem.ItemType == "Entry")
+				{
+					SetCursorToTextEntry();
+					swApp(FrameItem.Link);
+					return OrderedKeysCrtIndex;
+				}
+				else
+				{
+					swApp(FrameItem.Link);
+					return OrderedKeysCrtIndex;
+				}
 			}
 			else
 			{
-				int FrameNrToDisplay =this.crtDisplayFrame.CrtDisplayItem.Link;
+				DisplayNewFrame();
+				return 0;
+			}
+		}
+		public void SetCursorToTextEntry()
+		{
+			int x = consoleDisplay.xCalc(this.crtDisplayFrame.CrtDisplayItem.Column) + this.crtDisplayFrame.CrtDisplayItem.TextDisplay.Length +10;
+			int y = consoleDisplay.yCalc(this.crtDisplayFrame.CrtDisplayItem.Row);
+			Console.SetCursorPosition(x,y);
+		}
+
+		public void DisplayNewFrame()
+		{
+			int FrameNrToDisplay =this.crtDisplayFrame.CrtDisplayItem.Link;
 				foreach(IFrame<IFrameItem> frame in this.displayFrames)
 				{
 					if(frame.FrameNr == FrameNrToDisplay)
@@ -191,8 +215,6 @@ namespace PDBProject
 						DisplayCRTFrame();
 					}
 				}
-				return 0; //displying new frame => selected display item will be this.crtDisplayFrame.OrderedKeys[0] 
-			}
 		}
 		public static Dictionary<int, IFrameItem> CreateItemsList(List<string[]> readItemsList,string itemsFile)
 		{
@@ -204,7 +226,7 @@ namespace PDBProject
 				bool dyn, actTrig;
 
                 int.TryParse(textsArray[0], out itemNr);
-				itemType = textsArray[2];
+				itemType = textsArray[1];
 				labelText = textsArray[2];
 				int.TryParse(textsArray[3], out posCol);
 				int.TryParse(textsArray[4], out posRow);

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text;
 //using learningNS;
 //using word = Microsoft.Office.Interop.Word;
 
@@ -223,6 +224,16 @@ namespace IOMethNS
 				string completePath = correctedDirPath + "\\" + correctedFilePath;
 				return completePath;
 			}
+			public static string GetUserInput()
+			{
+				string userInput;
+				var sb = new StringBuilder();
+				char userCharInput = Console.ReadKey().KeyChar;
+				sb.Append(userCharInput);
+				userInput = sb.ToString();
+				return userInput;
+			}
+
     	}
 	public class IOMethodsCLSTesting
 	{

@@ -26,10 +26,20 @@ namespace PDBProject
 				case 0:
 					ConstructPDBApp();
 					break;
+				case 1:
+					WidgetTest();
+					break;
+
 
 				default:
 					break;
 			}
+		}
+		public static void WidgetTest()
+		{
+			string userInput = Console.ReadLine();
+			//string userInput = IOMethodsCLS.GetUserInput();
+			//Console.Write(">>"+userInput);
 		}
 		
     }
