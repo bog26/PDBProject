@@ -5,6 +5,7 @@ namespace PDBProject
 	public interface IFrameItem
     {
 		int FrameItemNr {get;set;}
+		string ItemType {get;}
 		string TextDisplay {get;set;}
 		int Column {get;set;}
 		int Row {get;set;}

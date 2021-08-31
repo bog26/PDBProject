@@ -200,17 +200,18 @@ namespace PDBProject
 			foreach (string[] textsArray in readItemsList)
             {
                 int itemNr, posCol, posRow, link;
-				string labelText;
+				string labelText, itemType;
 				bool dyn, actTrig;
 
                 int.TryParse(textsArray[0], out itemNr);
-				labelText = textsArray[1];
-				int.TryParse(textsArray[2], out posCol);
-				int.TryParse(textsArray[3], out posRow);
-				bool.TryParse(textsArray[4], out dyn);
-				bool.TryParse(textsArray[5], out actTrig);
-				int.TryParse(textsArray[6], out link);
-				IFrameItem item = new FrameItemDisplay(itemNr, labelText, posCol, posRow, dyn, actTrig, link);
+				itemType = textsArray[2];
+				labelText = textsArray[2];
+				int.TryParse(textsArray[3], out posCol);
+				int.TryParse(textsArray[4], out posRow);
+				bool.TryParse(textsArray[5], out dyn);
+				bool.TryParse(textsArray[6], out actTrig);
+				int.TryParse(textsArray[7], out link);
+				IFrameItem item = new FrameItemDisplay(itemNr, itemType,labelText, posCol, posRow, dyn, actTrig, link);
 				allItemsDict.Add(item.FrameItemNr,item);
             }
             return allItemsDict;

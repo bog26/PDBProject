@@ -8,6 +8,7 @@ namespace PDBProject
 	public class EntryWidget:FrameItemDisplay
     {
 		private int frameItemNr;
+		private string itemType;
 		private string textDisplay;
 		private int row;
 		private int column;
@@ -19,9 +20,11 @@ namespace PDBProject
 		// isActionTrigger => ActionSwitch method (int Link) 
 		// !isActionTrigger => FrameSwitch method (int Link) 
 		private bool readyForUpdate= false;
+/*
 		public EntryWidget()
 		{
 			this.frameItemNr = 0;
+			this.itemType = "Label";
 			this.textDisplay = "Menu";
 			this.row = 0;
 			this.column = 0;
@@ -32,9 +35,10 @@ namespace PDBProject
 			this.link = 0;
 			this.readyForUpdate = false;
 		}
-		public EntryWidget(int ItemNr, string text, int posCol, int posRow, bool dyn, bool actTrig, int lnk)
+		public EntryWidget(int ItemNr, string Type, string text, int posCol, int posRow, bool dyn, bool actTrig, int lnk)
 		{
 			this.frameItemNr = ItemNr;
+			this.itemType = Type;
 			this.textDisplay = text;
 			this.gridPosition = new int[]{posCol, posRow}; // x,y
 			this.column = posCol;
@@ -45,6 +49,9 @@ namespace PDBProject
 			this.isActionTrigger = actTrig;
 			this.link = lnk;
 		}
+*/
+
+
 		/*
 		public int FrameItemNr
 		{
@@ -111,7 +118,7 @@ namespace PDBProject
 			Console.SetCursorPosition(x,y);
 			return userInput;
 		}
-		
+
 	
 		
 
