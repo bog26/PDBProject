@@ -1,0 +1,16 @@
+*    <<ReadMe>>
+* This is a menu data file containing Items information
+* - comment lines start with the character "*" and will not be taken into account for the program execution
+* - all other lines will be used for construction of menu objects
+* - it can be manually written/modified by user, or by other program module
+* - lines should be introduced in the this form: << int ItemNr, string text, int posCol, int posRow, bool dyn, bool actTrig, int lnk  >>
+* - Ex: << 1,"LabelOne",1,4,false,true,1 >> 
+-1,Label,Exit,8,1,false,true,-1
+0,Label,Back,8,1,false,true,0
+1,Label,Login,1,4,false,false,1
+2,Label,New User,1,4,false,false,2
+3,Label,Existing User,1,8,false,false,3
+4,Label,Create,1,8,false,false,1
+5,Label,Login,1,8,false,false,1
+6,Entry,Enter user name,1,4,false,true,1
+7,Entry,Enter password,1,6,false,true,2

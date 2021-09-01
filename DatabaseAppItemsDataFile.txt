@@ -7,11 +7,11 @@
 * - Ex: << 1,"LabelOne",1,4,false,true,1 >> 
 -1,Label,Exit,8,1,false,true,-1
 0,Label,Back,8,1,false,true,0
-1,Label,Query,1,4,false,false,1
-2,Label,Sort,4,4,false,false,2
-3,Label,Group,8,4,false,false,3
-4,Label,Join,1,8,false,false,4
-5,Label,Nest,4,8,false,false,5
+1,Label,Query,1,2,false,false,1
+2,Label,Sort,4,2,false,false,2
+3,Label,Group,8,2,false,false,3
+4,Label,Join,1,3,false,false,4
+5,Label,Nest,4,3,false,false,5
 6,Label,Create Data Set,1,4,false,true,1
 7,Label,Create Data Set,1,4,false,true,1
 8,Label,Create Data Set,1,4,false,true,1
@@ -27,7 +27,10 @@
 18,Label,Group2,4,6,false,true,10
 19,Label,Join1,1,6,false,true,11
 20,Label,Nest1,1,6,false,true,12
-21,Label,Performance,8,8,false,false,6
+21,Label,Performance,8,3,false,false,6
 22,Label,Performance Tests,1,4,false,true,14
 23,Label,Tools,1,4,false,false,7
 24,Label,PDB,4,4,false,true,15
+25,Label,SQLite,1,4,false,false,8
+26,Label,SQL Tools,1,3,false,false,9
+27,Label,Create DB,1,3,false,true,16
