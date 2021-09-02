@@ -100,13 +100,44 @@ namespace PDBProject
                 var blog = db.Blogs
                     .OrderBy(b => b.BlogId)
                     .First();
-
+				
+				//bol:
+				Console.WriteLine(blog.Posts);
+ 
                 // Update
-                Console.WriteLine("Updating the blog and adding a post");
+                Console.WriteLine("Updating the blog and adding posts");
                 blog.Url = "https://devblogs.microsoft.com/dotnet";
                 blog.Posts.Add(
-                    new Post { Title = "Hello World", Content = "I wrote an app using EF Core!" });
-                db.SaveChanges();
+                    new Post {Title = "Hello World", Content = "I wrote an app using EF Core!" });
+					//new Post {PostId = 1, Title = "Hello World", Content = "I wrote an app using EF Core!" });
+				//bol:
+				blog.Posts.Add(
+					new Post {Title = "new1", Content = "comment1" });
+				blog.Posts.Add(
+					new Post {Title = "new2", Content = "comment2" });
+				blog.Posts.Add(
+					new Post {Title = "new3", Content = "comment3" });
+				blog.Posts.Add(
+					new Post {Title = "new4", Content = "comment4" });
+				blog.Posts.Add(
+					new Post {Title = "new5", Content = "comment5" });
+				db.SaveChanges();
+				
+				//bol:
+				foreach(Post item in blog.Posts.ToArray())
+				{
+					Console.WriteLine(item.Content);
+				} 
+
+				//bol:
+				Console.WriteLine("new query");
+				var post = db.Posts
+					.Where(b=>b.Title!="new2")
+					.ToList();
+				foreach(Post item in post)
+				{
+					Console.WriteLine(item.PostId+" "+item.Title+" "+ item.Content+" "+item.BlogId);
+				} 
 
                 // Delete
 				
