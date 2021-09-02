@@ -34,3 +34,4 @@
 25,Label,Entity,1,4,false,false,8
 26,Label,SQL Tools,1,3,false,false,9
 27,Label,Create blog DB,1,3,false,true,16
+28,Label,Create products DB,5,3,false,true,17
