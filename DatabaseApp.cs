@@ -74,7 +74,7 @@ namespace PDBProject
 					PDBApp.ConstructPDBApp();
 					break;
 				case 16:
-					Console.WriteLine("\ncreating DB - TBD");
+					//Console.WriteLine("\ncreating DB - TBD");
 					SQLiteInit();
 					break;
 
@@ -84,6 +84,7 @@ namespace PDBProject
 		}
 		public static void SQLiteInit()
 		{
+			//https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli
 			var db = new BloggingContext();
 			using (db)
             {

@@ -29,9 +29,9 @@
 20,Label,Nest1,1,6,false,true,12
 21,Label,Performance,8,3,false,false,6
 22,Label,Performance Tests,1,4,false,true,14
-23,Label,Tools,1,4,false,false,7
-24,Label,PDB,4,4,false,true,15
-25,Label,Entity,1,4,false,false,8
-26,Label,SQL Tools,1,3,false,false,9
+23,Label,LINQ,1,4,false,false,7
+24,Label,PDB,8,4,false,true,15
+25,Label,Entity,4,4,false,false,8
+26,Label,DBApps,1,3,false,false,9
 27,Label,Create blog DB,1,3,false,true,16
-28,Label,Create products DB,5,3,false,true,17
+28,Label,Entity01,5,3,false,true,17
