@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = PDBProject
-build_property.ProjectDir = F:\C#\projects\3\PDBProject\
+build_property.ProjectDir = f:\C#\projects\3\PDBProject\
