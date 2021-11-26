@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using IOMethNS;
 using System.Linq;
 using SQLProj;
@@ -13,15 +14,113 @@ namespace PDBProject
     //  TimeApp, FilesApp, encryptApp, etc.
 
     //public static class MainApp
-    public static class DatabaseApp
+    public static class PracticeApp
     {
-        public const string appName = "Database";
-        public static void ConstructDatabaseApp()
+        public const string appName = "Practice";
+        public static void ConstructPracticeApp()
         {
-            App DatabaseApp = new App(0, appName);
-            DatabaseApp.Application.CrtApp = DatabaseApp;
-            DatabaseApp.Application.UpdateFrame(AppSwitch);
+            //App DatabaseApp = new App(0, appName);
+            //DatabaseApp.Application.CrtApp = DatabaseApp;
+            //DatabaseApp.Application.UpdateFrame(AppSwitch);
+            Console.SetCursorPosition(0,33);
+            Console.WriteLine("Practice App"+"        ");
+            //Practice1();
+			//Practice2();
+			//Practice3();
+			Practice4();
+
+
         }
+
+        public static void Practice1()
+        {   
+            Console.WriteLine("REVERSING A STRING Sol 1" );
+			Console.WriteLine("please enter a text\n");
+			string text = Console.ReadLine();
+            string reversedText = string.Empty;
+            for(int i=0; i<text.Length; i++ )
+            {
+				reversedText = reversedText+text[text.Length-i-1];
+            }
+			Console.WriteLine("Reverserd text:"+reversedText);
+        }
+		public static void Practice2()
+        {
+			Console.WriteLine("REVERSING A STRING Sol 2" );
+			Console.WriteLine("please enter a text\n");
+			string text = Console.ReadLine();
+			char[] textArr = text.ToCharArray(); 
+			for(int i=0, j=text.Length-1; i<j; i++, j-- )
+			{
+				textArr[i] = text[j];
+				textArr[j] = text[i];
+			}
+			string reversedText = new string(textArr);
+			Console.WriteLine("Reverserd text:"+reversedText);
+
+		}
+
+		public static void Practice3()
+        {
+			Console.WriteLine("REVERSING WORDS IN A TEXT Sol 1" );
+			Console.WriteLine("please enter a text\n");
+			string text = Console.ReadLine();
+			string[] splittedText = text.Split(" ");
+			string[] reversedTextArr = new string[splittedText.Length];   
+			//string reversedText = string.Empty;
+			StringBuilder SBText = new StringBuilder();
+			for(int i=splittedText.Length-1; i>=0; i-- )
+			{
+				SBText.Append(splittedText[i]);
+				SBText.Append(" ");
+			}
+			string reversedText = SBText.ToString();
+
+			Console.WriteLine("Reverserd text:"+reversedText);
+
+		}
+
+		public static void Practice4()
+        {
+			Console.WriteLine("Check if a given number is prime number Sol 1" );
+			Console.WriteLine("please introduce a positive int number\n");
+			int number;
+			bool isNumber = Int32.TryParse(Console.ReadLine(), out number);
+			if(isNumber)
+			{
+				Console.WriteLine("checking\n");
+				//construct empty list of divisors
+				//loop from 2 to n/2 and check id n%div == 0
+				//add divisor to list
+				//if multiplication of list divisors> n break
+				List<int> divisors = new List<int>();
+				int divisorsProduct =1;
+				for(int i=2; i<number/2; i++)
+				{
+					if (number%i==0)
+					{
+						Console.WriteLine($"number {number} is not prime\n");
+						break;
+					}
+					else
+					{
+						divisors.Add(i);
+						divisorsProduct*=i;
+						if(divisorsProduct>number)
+						{
+							Console.WriteLine($"number {number} is prime\n");
+							break;
+						}
+					}
+				}
+			}
+			else
+			{
+				Console.WriteLine("wrong input\n");
+			}
+		}
+
+
         public static void AppSwitch(int ItemLink)
         {
             switch (ItemLink)
@@ -30,209 +129,20 @@ namespace PDBProject
                     MainApp.ConstructMainApp();
                     break;
                 case 0:
-                    ConstructDatabaseApp();
+                    ConstructPracticeApp();
                     break;
 
                 case 1:
-                    //Console.SetCursorPosition(0,33);
-                    //Console.WriteLine("Create data WIP ..."+"   ");
-                    CreateUserDefinedIntDataSet();
-                    break;
-                case 2:
-                    Query1();
-                    break;
-                case 3:
-                    Query2();
-                    break;
-                case 4:
-                    Query3();
-                    break;
-                case 6:
-                    Console.SetCursorPosition(0,33);
-                    Sort1();
-                    break;
-                case 9:
-                    Console.SetCursorPosition(0,33);
-                    Group1();
-                    break;  
-                case 11:
-                    Console.SetCursorPosition(0,33);
-                    Join1();
-                    break;
-                case 12:
-                    Console.SetCursorPosition(0,33);
-                    Nest1();
-                    break;
-                case 13:
-                    break;
-                case 14:
-                    Console.SetCursorPosition(0,33);
-                    PerformanceTest1();
-                    break;
-                case 15:
                     
-                    PDBApp.ConstructPDBApp();
                     break;
-                case 16:
-                    //Console.WriteLine("\ncreating DB - TBD");
-                    SQLiteInit();
-                    break;
-
+                
                 default:
                     break;
             }
         }
-        public static void SQLiteInit()
-        {
-            //https://docs.microsoft.com/en-us/ef/core/get-started/overview/first-app?tabs=netcore-cli
-            var db = new BloggingContext();
-            using (db)
-            {
-                // Note: This sample requires the database to be created before running.
-                Console.WriteLine($"Database path: {db.DbPath}.");
-                
-                // Create
-                Console.WriteLine("Inserting a new blog");
-                db.Add(new Blog { Url = "http://blogs.msdn.com/adonet" });
-                db.SaveChanges();
-
-                // Read
-                Console.WriteLine("Querying for a blog");
-                var blog = db.Blogs
-                    .OrderBy(b => b.BlogId)
-                    .First();
-                
-                //bol:
-                Console.WriteLine(blog.Posts);
- 
-                // Update
-                Console.WriteLine("Updating the blog and adding posts");
-                blog.Url = "https://devblogs.microsoft.com/dotnet";
-                blog.Posts.Add(
-                    new Post {Title = "Hello World", Content = "I wrote an app using EF Core!" });
-                    //new Post {PostId = 1, Title = "Hello World", Content = "I wrote an app using EF Core!" });
-                //bol:
-                blog.Posts.Add(
-                    new Post {Title = "new1", Content = "comment1" });
-                blog.Posts.Add(
-                    new Post {Title = "new2", Content = "comment2" });
-                blog.Posts.Add(
-                    new Post {Title = "new3", Content = "comment3" });
-                blog.Posts.Add(
-                    new Post {Title = "new4", Content = "comment4" });
-                blog.Posts.Add(
-                    new Post {Title = "new5", Content = "comment5" });
-                db.SaveChanges();
-                
-                //bol:
-                foreach(Post item in blog.Posts.ToArray())
-                {
-                    Console.WriteLine(item.Content);
-                } 
-
-                //bol:
-                Console.WriteLine("new query");
-                var post = db.Posts
-                    .Where(b=>b.Title!="new2")
-                    .ToList();
-                foreach(Post item in post)
-                {
-                    Console.WriteLine(item.PostId+" "+item.Title+" "+ item.Content+" "+item.BlogId);
-                } 
-
-                // Delete
-                
-                Console.WriteLine("Delete the blog");
-                db.Remove(blog);
-                db.SaveChanges();
-                
-            }
-        }
-
-        public static void CreateUserDefinedIntDataSet()
-        {
-            Console.SetCursorPosition(0,33);
-            Console.WriteLine("Dataset creation");
-            string dataFile =  IOMethodsCLS.UserDefinedFilePath();
-            //OrderedIntDataset(dataFile);
-            //dataFile =  IOMethodsCLS.UserDefinedFilePath();
-            //QuadrPolynIntDataset(dataFile);
-            MultilineQuadrPolynIntDataset(dataFile);
-        }
-        public static void OrderedIntDataset(string path)
-        {
-            try
-            {
-                StreamWriter writer = new StreamWriter(path);
-                Console.WriteLine("please insert dataset size");
-                int userInput = int.Parse(Console.ReadLine());
-                using (writer)
-                {
-                    writer.WriteLine("*"+"Read me: this creates a list of ordered integers");
-                    for(int i=0; i<userInput;i++)
-                    {
-                        writer.Write(i);
-                        if(i!=userInput-1)
-                        {
-                            writer.Write(",");
-                        }
-                    }
-                }
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine($"There was an issue! {e.Message}");
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine($"Cannot read file! Details: {e.Message}");
-            }
-            finally
-            {
-                Console.WriteLine("finished");
-            }
-        }
-
-        public static void QuadrPolynIntDataset(string path)
-        {
-            try
-            {
-                StreamWriter writer = new StreamWriter(path);
-                Console.WriteLine("creating a dataset using quadratic polynom: a*x*x+b*x+c");
-                Console.WriteLine("please insert dataset size");
-                int datasetSize = int.Parse(Console.ReadLine());
-                Console.WriteLine("please insert a");
-                int a = int.Parse(Console.ReadLine());
-                Console.WriteLine("please insert b");
-                int b = int.Parse(Console.ReadLine());
-                Console.WriteLine("please insert c");
-                int c = int.Parse(Console.ReadLine());
-                using (writer)
-                {
-                    writer.WriteLine("*"+$"Read me: this dataset is created using the quadratic polynom: {a}*x*x+{b}*x+{c}, where x is between 0 and {datasetSize-1}");
-                    for(int i=0; i<datasetSize;i++)
-                    {
-                        writer.Write(a*i*i+b*i+c);
-                        if(i!=datasetSize-1)
-                        {
-                            writer.Write(",");
-                        }   
-                    }
-                }
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine($"There was an issue! {e.Message}");
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine($"Cannot read file! Details: {e.Message}");
-            }
-            finally
-            {
-                Console.WriteLine("finished");
-            }
-        }
+        
+        
+        
         public static void MultilineQuadrPolynIntDataset(string path)
         {
             try
@@ -544,10 +454,10 @@ namespace PDBProject
 
 
     }
-    public static class TestDatabaseApp
-    {
+    //public static class TestDatabaseApp
+    //{
         
-    }
+    //}
 }
 
 
