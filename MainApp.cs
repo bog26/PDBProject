@@ -40,8 +40,7 @@ namespace PDBProject
 					//Console.WriteLine("constructing Database WIP ..."+"   ");
 					break;
 				case 5:
-					//Console.SetCursorPosition(0,33);
-					//Console.WriteLine("constructing Practice App"+"        ");
+					
 					PracticeApp.ConstructPracticeApp();
 					break;
 				default:

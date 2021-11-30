@@ -25,9 +25,10 @@ namespace PDBProject
             Console.SetCursorPosition(0,33);
             Console.WriteLine("Practice App"+"        ");
             //Practice1();
-			//Practice2();
-			//Practice3();
-			Practice4();
+            //Practice2();
+            //Practice3();
+            //Practice4();
+            Practice5();
 
 
         }
@@ -119,6 +120,106 @@ namespace PDBProject
 				Console.WriteLine("wrong input\n");
 			}
 		}
+
+        public static void Practice5()
+        {
+            string practice5Instructions = @"Your goal is to implement a difference function, which subtracts one list from another and returns the result.
+
+It should remove all values from list a, which are present in list b keeping their order.
+Kata.ArrayDiff(new int[] {1, 2}, new int[] {1}) => new int[] {2}
+If a value is present in b, all of its occurrences must be removed from the other:
+Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
+            Console.WriteLine(practice5Instructions);
+            TestSolutionPractice5_ArrayDiff();
+
+            //Console.ReadLine();
+        }
+
+        public static int[] SolutionPractice5_ArrayDiff(int[] a, int[] b)
+        {
+            DisplayArray(a);
+            Console.Write(" - ");
+            DisplayArray(b);
+            int[] indexesToRemove = new int[] { };
+
+            int[] diffArr = new int[a.Length];
+            for (int i = 0; i < a.Length; i++)
+            {
+                diffArr[i] = a[i];
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < b.Length; j++)
+                {
+                    if (a[i] == b[j])
+                    {
+                        int[] newIndexesToRemove = new int[indexesToRemove.Length+1];
+
+                        for (int k = 0; k < indexesToRemove.Length; k++)
+                        {
+                            newIndexesToRemove[k] = indexesToRemove[k];
+                        }
+                        newIndexesToRemove[newIndexesToRemove.Length - 1] = i;
+                        indexesToRemove = new int[newIndexesToRemove.Length];
+                        for (int k = 0; k < indexesToRemove.Length; k++)
+                        {
+                            indexesToRemove[k] = newIndexesToRemove[k];
+                        }
+                    }
+                }
+            }
+            Console.Write("indexes to remove ");
+            DisplayArray(indexesToRemove);
+            int crtIndexDelta = 0;
+            if(indexesToRemove.Length !=0)
+            {
+                for (int i=0; i< indexesToRemove.Length; i++)
+                {
+                    diffArr = RemoveElementFromArray(diffArr, indexesToRemove[i]-crtIndexDelta);
+                    crtIndexDelta++;
+                }
+            } 
+            return diffArr;
+        } 
+
+        public static int[] RemoveElementFromArray(int[] a, int indToRemove)
+        {
+            int[] diff = new int[a.Length-1];
+            for(int i=0; i< indToRemove; i++)
+            {
+                diff[i] = a[i];
+            }
+            for(int i=indToRemove; i< diff.Length; i++)
+            {
+                diff[i] = a[i+1];
+            }
+
+            return diff;
+        }
+
+        
+        public static void DisplayArray(int[] inputArray)
+        {
+            foreach(int item in inputArray)
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
+        }
+        public static void TestSolutionPractice5_ArrayDiff()
+        {
+            int[] arrA = new int[] { 14, -3, -14, 16, -11, 2, 13, 6, -12, 0, 10, -12, -14 };
+            int[] arrB = new int[] { -11, -7, -7, 3, -2, 20, -7, 11, 3, 16, 18, 1, 6, -11, -18, 0, 7, 3 };
+            int[] diffArr = SolutionPractice5_ArrayDiff(arrA, arrB);
+            Console.WriteLine("Testing.");
+            Console.WriteLine("Input A:");
+            DisplayArray(arrA);
+            Console.WriteLine("Input B:");
+            DisplayArray(arrB);
+            Console.WriteLine("solution:");
+            DisplayArray(diffArr);
+        }
+
 
 
         public static void AppSwitch(int ItemLink)
