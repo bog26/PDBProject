@@ -199,8 +199,35 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
             return diff;
         }
 
-        
-        public static void DisplayArray(int[] inputArray)
+        public static int[] SolutionPractice5_ArrayDiffRefactor1(int[] a, int[] b)
+        {
+            int[] diffArr = new int[a.Length];
+            int crtIndexDelta = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                diffArr[i] = a[i];
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = 0; j < b.Length; j++)
+                {
+
+                    if (a[i] == b[j])
+                    {
+                        diffArr = RemoveElementFromArray(diffArr, i - crtIndexDelta);
+                        crtIndexDelta++;
+                        break;
+                    }
+                    
+                }
+            }
+
+
+            return diffArr;
+        }
+
+
+            public static void DisplayArray(int[] inputArray)
         {
             foreach(int item in inputArray)
             {
@@ -212,7 +239,11 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
         {
             int[] arrA = new int[] { 14, -3, -14, 16, -11, 2, 13, 6, -12, 0, 10, -12, -14 };
             int[] arrB = new int[] { -11, -7, -7, 3, -2, 20, -7, 11, 3, 16, 18, 1, 6, -11, -18, 0, 7, 3 };
-            int[] diffArr = SolutionPractice5_ArrayDiff(arrA, arrB);
+            //should equal [14, -3, -14, 2, 13, -12, 10, -12, -14]
+            //int[] arrA = new int[] { 1, 2, 4, 2, 3 };
+            //int[] arrB = new int[] { 4, 4 };
+            //int[] diffArr = SolutionPractice5_ArrayDiff(arrA, arrB); //works, but inefficient
+            int[] diffArr = SolutionPractice5_ArrayDiffRefactor1(arrA, arrB); //works, but still inefficient
             Console.WriteLine("Testing.");
             Console.WriteLine("Input A:");
             DisplayArray(arrA);
