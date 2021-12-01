@@ -137,9 +137,9 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
 
         public static int[] SolutionPractice5_ArrayDiff(int[] a, int[] b)
         {
-            DisplayArray(a);
-            Console.Write(" - ");
-            DisplayArray(b);
+            //DisplayArray(a);
+            //Console.Write(" - \n");
+            //DisplayArray(b);
             int[] indexesToRemove = new int[] { };
 
             int[] diffArr = new int[a.Length];
@@ -151,6 +151,7 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
             {
                 for (int j = 0; j < b.Length; j++)
                 {
+
                     if (a[i] == b[j])
                     {
                         int[] newIndexesToRemove = new int[indexesToRemove.Length+1];
@@ -165,11 +166,12 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
                         {
                             indexesToRemove[k] = newIndexesToRemove[k];
                         }
+                        break;
                     }
                 }
             }
-            Console.Write("indexes to remove ");
-            DisplayArray(indexesToRemove);
+            //Console.Write("indexes to remove ");
+            //DisplayArray(indexesToRemove);
             int crtIndexDelta = 0;
             if(indexesToRemove.Length !=0)
             {
