@@ -28,7 +28,8 @@ namespace PDBProject
             //Practice2();
             //Practice3();
             //Practice4();
-            Practice5();
+            //Practice5(); //WIP: done, but inneficient
+            Practice6(); //WIP
 
 
         }
@@ -135,7 +136,15 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
             //Console.ReadLine();
         }
 
-        public static int[] SolutionPractice5_ArrayDiff(int[] a, int[] b)
+        public static void Practice6()
+        {
+            string practice6Instructions = @"Given an array/list [] of integers , 
+Construct a product array Of same size Such That prod[i] is equal to The Product of all the elements of Arr[] except Arr[i]. ";
+            Console.WriteLine(practice6Instructions);
+            TestSolutionPractice6_ProductArray();
+        }
+
+            public static int[] SolutionPractice5_ArrayDiff(int[] a, int[] b)
         {
             //DisplayArray(a);
             //Console.Write(" - \n");
@@ -218,14 +227,10 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
                         crtIndexDelta++;
                         break;
                     }
-                    
                 }
             }
-
-
             return diffArr;
         }
-
 
             public static void DisplayArray(int[] inputArray)
         {
@@ -237,13 +242,21 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
         }
         public static void TestSolutionPractice5_ArrayDiff()
         {
-            int[] arrA = new int[] { 14, -3, -14, 16, -11, 2, 13, 6, -12, 0, 10, -12, -14 };
-            int[] arrB = new int[] { -11, -7, -7, 3, -2, 20, -7, 11, 3, 16, 18, 1, 6, -11, -18, 0, 7, 3 };
+            //int[] arrA = new int[] { 14, -3, -14, 16, -11, 2, 13, 6, -12, 0, 10, -12, -14 };
+            //int[] arrB = new int[] { -11, -7, -7, 3, -2, 20, -7, 11, 3, 16, 18, 1, 6, -11, -18, 0, 7, 3 };
             //should equal [14, -3, -14, 2, 13, -12, 10, -12, -14]
-            //int[] arrA = new int[] { 1, 2, 4, 2, 3 };
-            //int[] arrB = new int[] { 4, 4 };
+            //int[] arrA = new int[] { 1, 2, 4, 2, 3, 9, -5, 4 };
+            //int[] arrB = new int[] { 5, 4, 2, 4 };
+            int[] arrA = ConstructRandomIntArray(2000,-1000, 1000);
+            int[] arrB = ConstructRandomIntArray(2000, -1000, 1000);
+
+            DateTime startTime = DateTime.Now;
+
             //int[] diffArr = SolutionPractice5_ArrayDiff(arrA, arrB); //works, but inefficient
             int[] diffArr = SolutionPractice5_ArrayDiffRefactor1(arrA, arrB); //works, but still inefficient
+            
+            Console.WriteLine($"Duration : {DateTime.Now - startTime}");
+
             Console.WriteLine("Testing.");
             Console.WriteLine("Input A:");
             DisplayArray(arrA);
@@ -251,11 +264,51 @@ Kata.ArrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}";
             DisplayArray(arrB);
             Console.WriteLine("solution:");
             DisplayArray(diffArr);
+            
+        }
+
+        public static int[] ConstructRandomIntArray(int arrSize, int min, int max)
+        {
+            int[] newTestArray = new int[arrSize]; 
+            for(int i=0; i<arrSize; i++  )
+            {
+                Random random = new Random();
+                newTestArray[i] = random.Next(min,max);
+            }
+            return newTestArray;
+        }
+        public static int[] SolutionPractice6_ProductArray(int[] arr)
+        {
+            int[] prodArr = new int[arr.Length];
+            for(int i=0; i< prodArr.Length; i++)
+            {
+                prodArr[i] = 1;
+                for (int j=0; j<i; j++)
+                {
+                    prodArr[i] *= arr[j];
+                }
+                for (int j = i+1; j < prodArr.Length; j++)
+                {
+                    prodArr[i] *= arr[j];
+                }
+            }
+
+            return prodArr;
+        }
+        public static void TestSolutionPractice6_ProductArray()
+        {
+            int[] testArr = new int[] { 1, 2, 3, 4 };
+            Console.WriteLine("Input:");
+            DisplayArray(testArr);
+            Console.WriteLine("Output:");
+            int[] resultArr = SolutionPractice6_ProductArray(testArr);
+            DisplayArray(resultArr);
+
         }
 
 
 
-        public static void AppSwitch(int ItemLink)
+            public static void AppSwitch(int ItemLink)
         {
             switch (ItemLink)
             {
