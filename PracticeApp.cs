@@ -28,8 +28,8 @@ namespace PDBProject
             //Practice2();
             //Practice3();
             //Practice4();
-            //Practice5(); //WIP: done, but inneficient
-            Practice6(); //WIP
+            Practice5(); //WIP: done, but inneficient
+            //Practice6(); //done
 
 
         }
@@ -232,6 +232,54 @@ Construct a product array Of same size Such That prod[i] is equal to The Product
             return diffArr;
         }
 
+
+        public static int[] SolutionPractice5_ArrayDiffRefactor2(int[] a, int[] b)
+        {
+            int[] diffArr;
+            bool changedArr = false;
+            List<int> diffList = new List<int>();
+            diffList.AddRange(a);
+            foreach(int item in b)
+            {
+                if(diffList.Contains(item))
+                {
+                    if(!changedArr)
+                    {
+                        changedArr = true;
+                    }
+                    bool itemIsPresent = true;
+                    while(itemIsPresent)
+                    {
+                        diffList.Remove(item);
+                        if (!diffList.Contains(item))
+                        {
+                            itemIsPresent = false;
+                        }
+                    }   
+                }
+            }
+            if(changedArr)
+            {
+                diffArr = new int[diffList.Count];
+                for (int i = 0; i < diffList.Count; i++)
+                {
+                    diffArr[i] = diffList[i];
+                }
+            }
+            else
+            {
+                diffArr = new int[a.Length];
+                for (int i = 0; i < a.Length; i++)
+                {
+                    diffArr[i] = a[i];
+                }
+            }
+            return diffArr;
+        }
+
+
+
+
             public static void DisplayArray(int[] inputArray)
         {
             foreach(int item in inputArray)
@@ -242,19 +290,20 @@ Construct a product array Of same size Such That prod[i] is equal to The Product
         }
         public static void TestSolutionPractice5_ArrayDiff()
         {
-            //int[] arrA = new int[] { 14, -3, -14, 16, -11, 2, 13, 6, -12, 0, 10, -12, -14 };
-            //int[] arrB = new int[] { -11, -7, -7, 3, -2, 20, -7, 11, 3, 16, 18, 1, 6, -11, -18, 0, 7, 3 };
+            int[] arrA = new int[] { 14, -3, -14, 16, -11, 2, 13, 6, -12, 0, 10, -12, -14 };
+            int[] arrB = new int[] { -11, -7, -7, 3, -2, 20, -7, 11, 3, 16, 18, 1, 6, -11, -18, 0, 7, 3 };
             //should equal [14, -3, -14, 2, 13, -12, 10, -12, -14]
             //int[] arrA = new int[] { 1, 2, 4, 2, 3, 9, -5, 4 };
             //int[] arrB = new int[] { 5, 4, 2, 4 };
-            int[] arrA = ConstructRandomIntArray(2000,-1000, 1000);
-            int[] arrB = ConstructRandomIntArray(2000, -1000, 1000);
+            //int[] arrA = ConstructRandomIntArray(2000,-1000, 1000);
+            //int[] arrB = ConstructRandomIntArray(2000, -1000, 1000);
 
             DateTime startTime = DateTime.Now;
 
             //int[] diffArr = SolutionPractice5_ArrayDiff(arrA, arrB); //works, but inefficient
-            int[] diffArr = SolutionPractice5_ArrayDiffRefactor1(arrA, arrB); //works, but still inefficient
-            
+            //int[] diffArr = SolutionPractice5_ArrayDiffRefactor1(arrA, arrB); //works, but still inefficient
+            int[] diffArr = SolutionPractice5_ArrayDiffRefactor2(arrA, arrB);                                                                  //SolutionPractice5_ArrayDiffRefactor2
+
             Console.WriteLine($"Duration : {DateTime.Now - startTime}");
 
             Console.WriteLine("Testing.");
